@@ -10,3 +10,5 @@ https://www.pygame.org/docs/ref/midi.html
 https://www.keithmcmillen.com/blog/making-music-in-the-browser-web-midi-api/
 
 Opstarten connectie midi keyboard en web browser
+piano noten library
+https://github.com/pffy/mp3-piano-sound/tree/master/mp3
