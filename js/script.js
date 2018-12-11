@@ -77,6 +77,19 @@
 		key81: 46,
 		key82: 47,
 		key83: 48,
+		key84: 49,
+		key85: 50,
+		key86: 51,
+		key87: 52,
+		key88: 53,
+		key89: 54,
+		key90: 55,
+		key91: 56,
+		key92: 57,
+		key93: 58,
+		key94: 59,
+		key95: 60,
+		key96: 61,
 	};
 	// user interaction 
 	function clickPlayOn(e){
