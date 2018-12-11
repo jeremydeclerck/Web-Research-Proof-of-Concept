@@ -12,3 +12,12 @@ https://www.keithmcmillen.com/blog/making-music-in-the-browser-web-midi-api/
 Opstarten connectie midi keyboard en web browser
 piano noten library
 https://github.com/pffy/mp3-piano-sound/tree/master/mp3
+
+11-12-18
+Positioneren van keyboard, goed zetten van keys, styling
+
+Research naar weergaven afspelen keys met gebruik van jQuery.
+https://jquery.com/
+https://github.com/djipco/webmidi
+https://github.com/hazzik/livequery/blob/master/README.md
+https://github.com/hazzik/livequery
