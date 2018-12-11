@@ -1,4 +1,4 @@
-
+$(document).ready(function(){	
 //http://stackoverflow.com/questions/23687635/how-to-stop-audio-in-an-iframe-using-web-audio-api-after-hiding-its-container-di
 (function(){
 	var log = console.log.bind(console), keyData = document.getElementById('key_data'), 
@@ -91,41 +91,61 @@
 		key95: 60,
 		key96: 61,
 	};
+
+
 	// user interaction 
 	function clickPlayOn(e){
+
 		e.target.classList.add('active');
 		e.target.play();
+
+
 	}
 	
 	function clickPlayOff(e){
 		e.target.classList.remove('active');
+		document.getElementById("content").appendChild(whiteKey);
+
+
 	}
+
+
 
 	function keyController(e){
 		if(e.type == "keydown"){
+			
 			switch(e.keyCode){
-				case 81:
-					btn[0].classList.add('active');
+				case 84:
+				console.log('test');
+				e.classList.appendChild(whiteKey);
 					btn[0].play();
 					break;
 				case 87:
 					btn[1].classList.add('active');
+					e.classList.appendChild(whiteKey);
+					document.getElementById('content').appendChild(whiteKey);
+					console.log('test');
 					btn[1].play();
 					break;
 				case 69:
+					document.getElementById('content').appendChild(whiteKey);
 					btn[2].classList.add('active');
+					console.log('test');
 					btn[2].play();
 					break;
 				case 82:
 					btn[3].classList.add('active');
+					document.getElementById('content').appendChild(whiteKey);
+					console.log('test');
 					btn[3].play();
 					break;
 				case 84:
+					document.getElementById('content').appendChild(whiteKey);
 					btn[4].classList.add('active');
+					console.log('test');
 					btn[4].play();
 					break;					
 				default:
-					//console.log(e);
 			}
 		}
 		else if(e.type == "keyup"){
@@ -146,10 +166,11 @@
 					btn[4].classList.remove('active');
 					break;
 				default:
-					//console.log(e.keyCode);
+					console.log(e.keyCode);
 			}
 		}
 	}
+	console.log(WebMidi.inputs);
 
 	// midi functions
 	function onMIDISuccess(midiAccess){
@@ -181,7 +202,7 @@
 		// pressure / tilt on
 		// pressure: 176, cmd 11: 
 		// bend: 224, cmd: 14
-		log('MIDI data', data);
+		//log('MIDI data', data);
 		switch(type){
 			case 144: // noteOn message 
 				noteOn(note, velocity);
@@ -191,8 +212,9 @@
 				break;
 		}
 		
+		
 		//log('data', data, 'cmd', cmd, 'channel', channel);
-		logger(keyData, 'key data', data);
+		//logger(keyData, 'key data', data);
 	}
 
 	function onStateChange(event){
@@ -202,14 +224,14 @@
 			log("name", name, "port", port, "state", state);
 
 	}
-
+/*
 	function listInputs(inputs){
 		var input = inputs.value;
 			log("Input port : [ type:'" + input.type + "' id: '" + input.id + 
 					"' manufacturer: '" + input.manufacturer + "' name: '" + input.name + 
 					"' version: '" + input.version + "']");
 	}
-
+*/
 	function noteOn(midiNote, velocity){
 		player(midiNote, velocity);
 	}
@@ -219,13 +241,40 @@
 	}
 
 	function player(note, velocity){
+		var whiteKey = document.createElement("div");
+		var blackKey = document.createElement("div");
+		blackKey.className = "movingblack";
+		whiteKey.className = "movingwhite";
+
 		var sample = sampleMap['key'+note];
 		if(sample){
 			if(type == (0x80 & 0xf0) || velocity == 0){ //needs to be fixed for QuNexus, which always returns 144
 				btn[sample - 1].classList.remove('active');
+
 				return;
 			}
+
+			
 			btn[sample - 1].classList.add('active');
+
+			if ($(btn[sample - 1]).hasClass("white")) {
+				btn[sample - 1].appendChild(whiteKey);
+				$(whiteKey).animate({
+					bottom: '1000px',
+				}, 7000, "linear");
+			  }
+
+			  	if ($(btn[sample - 1]).hasClass("black")) {
+				btn[sample - 1].appendChild(blackKey);
+				$(blackKey).animate({
+					bottom: '1000px',
+				}, 7850, "linear");
+			  }
+
+		
+			
+
+		  
 			btn[sample - 1].play(velocity);
 		}
 	}
@@ -312,10 +361,14 @@
 	function frequencyFromNoteNumber( note ) {
 		return 440 * Math.pow(2,(note-69)/12);
 	}
-
+/*
 	function logger(container, label, data){
 		messages = label + " [channel: " + (data[0] & 0xf) + ", cmd: " + (data[0] >> 4) + ", type: " + (data[0] & 0xf0) + " , note: " + data[1] + " , velocity: " + data[2] + "]";
 		container.textContent = messages;
 	}
-
+*/
 })();
+
+
+
+});
