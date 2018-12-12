@@ -245,6 +245,9 @@ $(document).ready(function(){
 		var blackKey = document.createElement("div");
 		blackKey.className = "movingblack";
 		whiteKey.className = "movingwhite";
+		var i=0,timer=setInterval(function(){i++},1000);
+
+
 
 		var sample = sampleMap['key'+note];
 		if(sample){
@@ -255,9 +258,13 @@ $(document).ready(function(){
 			}
 
 			
+			
 			btn[sample - 1].classList.add('active');
 
 			if ($(btn[sample - 1]).hasClass("white")) {
+				whiteKey.style.height = "${i}px";
+				console.log(i);
+
 				btn[sample - 1].appendChild(whiteKey);
 				$(whiteKey).animate({
 					bottom: '1000px',
