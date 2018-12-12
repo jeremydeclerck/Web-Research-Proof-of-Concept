@@ -7,6 +7,7 @@ $(document).ready(function(){
 	var activeNotes = [];
 	var btnBox = document.getElementById('content'), btn = document.getElementsByClassName('button');
 	var data, cmd, channel, type, note, velocity;
+	var isReleased = false;
 
 	// request MIDI access
 	if(navigator.requestMIDIAccess){
@@ -123,24 +124,20 @@ $(document).ready(function(){
 				case 87:
 					btn[1].classList.add('active');
 					e.classList.appendChild(whiteKey);
-					document.getElementById('content').appendChild(whiteKey);
 					console.log('test');
 					btn[1].play();
 					break;
 				case 69:
-					document.getElementById('content').appendChild(whiteKey);
 					btn[2].classList.add('active');
 					console.log('test');
 					btn[2].play();
 					break;
 				case 82:
 					btn[3].classList.add('active');
-					document.getElementById('content').appendChild(whiteKey);
 					console.log('test');
 					btn[3].play();
 					break;
 				case 84:
-					document.getElementById('content').appendChild(whiteKey);
 					btn[4].classList.add('active');
 					console.log('test');
 					btn[4].play();
@@ -203,6 +200,9 @@ $(document).ready(function(){
 		// pressure: 176, cmd 11: 
 		// bend: 224, cmd: 14
 		//log('MIDI data', data);
+		if(cmd==8){
+			isReleased = true;
+		}
 		switch(type){
 			case 144: // noteOn message 
 				noteOn(note, velocity);
@@ -240,42 +240,66 @@ $(document).ready(function(){
 		player(midiNote, velocity);
 	}
 
+	function stop(){
+		console.log('stop');
+		cancelAnimationFrame(move);
+		isPlaying = true;
+	
+	}
+
 	function player(note, velocity){
 		var whiteKey = document.createElement("div");
 		var blackKey = document.createElement("div");
+		var isPlaying;
 		blackKey.className = "movingblack";
 		whiteKey.className = "movingwhite";
-		var i=0,timer=setInterval(function(){i++},1000);
-
-
+		var height = 0;
+		var frame;
 
 		var sample = sampleMap['key'+note];
 		if(sample){
 			if(type == (0x80 & 0xf0) || velocity == 0){ //needs to be fixed for QuNexus, which always returns 144
 				btn[sample - 1].classList.remove('active');
-
+				isPlaying=true;
+				stop();
 				return;
 			}
-
-			
-			
+	
 			btn[sample - 1].classList.add('active');
 
-			if ($(btn[sample - 1]).hasClass("white")) {
-				whiteKey.style.height = "${i}px";
-				console.log(i);
 
+			if ($(btn[sample - 1]).hasClass("active")){
+				isPlaying = false;
+				
+				function move(){
+					if(isPlaying===false){
+						if ($(btn[sample - 1]).hasClass("active")){
+						height += 2.5;
+						whiteKey.style.height = height + 'px';
+						blackKey.style.height = height + 'px';
+						requestAnimationFrame(move); 
+						}
+					}
+				}
+				
+				requestAnimationFrame(move); 
+			}
+			
+
+			if ($(btn[sample - 1]).hasClass("white")) {
+				
+
+				
 				btn[sample - 1].appendChild(whiteKey);
 				$(whiteKey).animate({
-					bottom: '1000px',
-				}, 7000, "linear");
+					top: '-2000px',
+				}, 13500, "linear");
 			  }
-
 			  	if ($(btn[sample - 1]).hasClass("black")) {
 				btn[sample - 1].appendChild(blackKey);
 				$(blackKey).animate({
-					bottom: '1000px',
-				}, 7850, "linear");
+					top: '-2000px',
+				}, 13520, "linear");
 			  }
 
 		
@@ -368,12 +392,12 @@ $(document).ready(function(){
 	function frequencyFromNoteNumber( note ) {
 		return 440 * Math.pow(2,(note-69)/12);
 	}
-/*
+
 	function logger(container, label, data){
 		messages = label + " [channel: " + (data[0] & 0xf) + ", cmd: " + (data[0] >> 4) + ", type: " + (data[0] & 0xf0) + " , note: " + data[1] + " , velocity: " + data[2] + "]";
 		container.textContent = messages;
 	}
-*/
+
 })();
 
 
