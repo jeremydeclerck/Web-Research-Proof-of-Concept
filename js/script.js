@@ -1,4 +1,6 @@
 $(document).ready(function(){	
+
+	
 //http://stackoverflow.com/questions/23687635/how-to-stop-audio-in-an-iframe-using-web-audio-api-after-hiding-its-container-di
 (function(){
 	var log = console.log.bind(console), keyData = document.getElementById('key_data'), 
@@ -8,6 +10,17 @@ $(document).ready(function(){
 	var btnBox = document.getElementById('content'), btn = document.getElementsByClassName('button');
 	var data, cmd, channel, type, note, velocity;
 	var isReleased = false;
+
+	var myColor;
+
+	$("#custom").spectrum({
+		color: "#20f2f9",
+		change: function(color){
+			myColor = color.toHexString();
+		console.log(myColor);
+		}
+	});
+
 
 	// request MIDI access
 	if(navigator.requestMIDIAccess){
@@ -242,6 +255,7 @@ $(document).ready(function(){
 
 	function stop(){
 		console.log('stop');
+		
 		cancelAnimationFrame(move);
 		isPlaying = true;
 	
@@ -251,15 +265,22 @@ $(document).ready(function(){
 		var whiteKey = document.createElement("div");
 		var blackKey = document.createElement("div");
 		var isPlaying;
+		
 		blackKey.className = "movingblack";
+		blackKey.style.backgroundColor = myColor;
+		whiteKey.style.backgroundColor = myColor;
 		whiteKey.className = "movingwhite";
 		var height = 0;
 		var frame;
 
+
 		var sample = sampleMap['key'+note];
 		if(sample){
 			if(type == (0x80 & 0xf0) || velocity == 0){ //needs to be fixed for QuNexus, which always returns 144
+				$('.active').css('background-color', "");
+
 				btn[sample - 1].classList.remove('active');
+
 				isPlaying=true;
 				stop();
 				return;
@@ -267,13 +288,14 @@ $(document).ready(function(){
 	
 			btn[sample - 1].classList.add('active');
 
-
 			if ($(btn[sample - 1]).hasClass("active")){
 				isPlaying = false;
 				
 				function move(){
 					if(isPlaying===false){
 						if ($(btn[sample - 1]).hasClass("active")){
+		$('.active').css('background-color', myColor);
+
 						height += 2.5;
 						whiteKey.style.height = height + 'px';
 						blackKey.style.height = height + 'px';
