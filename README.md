@@ -28,3 +28,7 @@ https://github.com/xobs/midi-to-keypress <br>
 https://rustup.rs/ <br>
 https://gist.github.com/nick-thompson/3995530 <br>
 http://www.javascriptkit.com/javatutors/requestanimationframe.shtml <br>
+
+Color Picker toevoegen <br>
+http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/ <br>
+http://bgrins.github.io/spectrum/ <br>
