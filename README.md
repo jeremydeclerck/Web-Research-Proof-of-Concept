@@ -26,3 +26,4 @@ https://github.com/hazzik/livequery <br>
 Keys weergave aanpassen aan de lengte dat ze worden ingedrukt <br>
 https://github.com/xobs/midi-to-keypress <br>
 https://rustup.rs/ <br>
+https://gist.github.com/nick-thompson/3995530 <br>
