@@ -21,3 +21,8 @@ https://jquery.com/ <br>
 https://github.com/djipco/webmidi <br>
 https://github.com/hazzik/livequery/blob/master/README.md <br>
 https://github.com/hazzik/livequery <br>
+
+<h4> 12-12-18 </h4>
+Keys weergave aanpassen aan de lengte dat ze worden ingedrukt <br>
+https://github.com/xobs/midi-to-keypress <br>
+https://rustup.rs/ <br>
