@@ -38,3 +38,4 @@ Beetje research doen naar opnemen / recorden van de screen <br>
 https://stackoverflow.com/questions/50543591/screen-recording-the-browser-window-using-javascript <br>
 https://github.com/mgechev/jscapture <br>
 https://chrome.google.com/webstore/detail/screencastify-screen-vide/mmeijimgabbpbgpdklnllpncmdofkcpn <br>
+https://stackoverflow.com/questions/7597310/invoking-a-google-chrome-extension-from-javascript <br>
