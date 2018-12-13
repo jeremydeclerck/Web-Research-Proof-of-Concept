@@ -32,3 +32,9 @@ http://www.javascriptkit.com/javatutors/requestanimationframe.shtml <br>
 Color Picker toevoegen <br>
 http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/ <br>
 http://bgrins.github.io/spectrum/ <br>
+
+<h4> 13-12-18 </h4>
+Beetje research doen naar opnemen / recorden van de screen <br>
+https://stackoverflow.com/questions/50543591/screen-recording-the-browser-window-using-javascript <br>
+https://github.com/mgechev/jscapture <br>
+https://chrome.google.com/webstore/detail/screencastify-screen-vide/mmeijimgabbpbgpdklnllpncmdofkcpn <br>
