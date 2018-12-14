@@ -34,8 +34,15 @@ http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/ <br>
 http://bgrins.github.io/spectrum/ <br>
 
 <h4> 13-12-18 </h4>
-Beetje research doen naar opnemen / recorden van de screen <br>
+Research doen naar opnemen / recorden van de screen <br>
 https://stackoverflow.com/questions/50543591/screen-recording-the-browser-window-using-javascript <br>
 https://github.com/mgechev/jscapture <br>
 https://chrome.google.com/webstore/detail/screencastify-screen-vide/mmeijimgabbpbgpdklnllpncmdofkcpn <br>
 https://stackoverflow.com/questions/7597310/invoking-a-google-chrome-extension-from-javascript <br>
+
+<h4> 14-12-18 </h4> <br>
+Screen Recording <br>
+https://github.com/w69b/castify-api-docs <br>
+https://webrtc.github.io/samples/src/content/capture/canvas-record/ <br>
+https://github.com/spite/ccapture.js/ <br>
+https://github.com/muaz-khan/Ffmpeg.js/blob/master/audio-plus-canvas-recording.html <br>
