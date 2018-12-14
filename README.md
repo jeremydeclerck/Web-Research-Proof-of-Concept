@@ -49,3 +49,4 @@ https://github.com/muaz-khan/Ffmpeg.js/blob/master/audio-plus-canvas-recording.h
 https://github.com/muaz-khan/WebRTC-Experiment <br>
 https://github.com/muaz-khan/Chrome-Extensions/tree/master/screen-recording#call-from-your-own-website <br>
 https://github.com/muaz-khan/Ffmpeg.js <br>
+PROBLEEM: opnemen lukt (screencastify): video en audio kwaliteit heel slecht
