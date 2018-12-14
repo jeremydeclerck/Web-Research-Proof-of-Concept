@@ -46,3 +46,6 @@ https://github.com/w69b/castify-api-docs <br>
 https://webrtc.github.io/samples/src/content/capture/canvas-record/ <br>
 https://github.com/spite/ccapture.js/ <br>
 https://github.com/muaz-khan/Ffmpeg.js/blob/master/audio-plus-canvas-recording.html <br>
+https://github.com/muaz-khan/WebRTC-Experiment <br>
+https://github.com/muaz-khan/Chrome-Extensions/tree/master/screen-recording#call-from-your-own-website <br>
+https://github.com/muaz-khan/Ffmpeg.js <br>
