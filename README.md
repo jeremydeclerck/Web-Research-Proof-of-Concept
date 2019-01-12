@@ -55,5 +55,8 @@ PROBLEEM: opnemen lukt (screencastify): video en audio kwaliteit heel slecht <br
 Zoeken naar mogelijkheden om met canvas te werken ipv divs voor snellere video en betere audio kwaliteit -- niet mogelijk <br>
 proberen FPS issues op te lossen met casting <br>
 chrome://flags/#enable-experimental-web-platform-features Enabled <br>
-RTC Screen recording -> werkende versie met deftige FPS gevonden zonder audio
+RTC Screen recording -> werkende versie met deftige FPS gevonden zonder audio <br>
+proberen audio apart op te nemen en te mergen: <br>
+https://github.com/muaz-khan/WebRTC-Experiment/blob/master/RecordRTC/simple-demos/audio-recording.html <br>
+https://github.com/muaz-khan/WebRTC-Experiment/blob/master/ffmpeg/merging-wav-and-webm-into-mp4.html <br>
 
