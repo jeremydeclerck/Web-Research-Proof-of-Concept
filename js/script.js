@@ -265,10 +265,11 @@ $(document).ready(function(){
 		var whiteKey = document.createElement("div");
 		var blackKey = document.createElement("div");
 		var isPlaying;
-		
+		var colors = ["#fe4a49",  "#2ab7ca", "#fed766"];
+		var color = colors[Math.floor(Math.random()*colors.length)];
 		blackKey.className = "movingblack";
-		blackKey.style.backgroundColor = myColor;
-		whiteKey.style.backgroundColor = myColor;
+		blackKey.style.backgroundColor = color; // set to myColor for colorpicker
+		whiteKey.style.backgroundColor = color; //set to myColor for colorpicker
 		whiteKey.className = "movingwhite";
 		var height = 0;
 		var frame;
@@ -294,7 +295,7 @@ $(document).ready(function(){
 				function move(){
 					if(isPlaying===false){
 						if ($(btn[sample - 1]).hasClass("active")){
-		$('.active').css('background-color', myColor);
+							$('.active').css('background-color', color); // set to myColor for colorpicker
 
 						height += 2.5;
 						whiteKey.style.height = height + 'px';
