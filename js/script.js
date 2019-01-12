@@ -1,5 +1,4 @@
 
-
 $(document).ready(function(){	
 
 	
@@ -134,28 +133,23 @@ $(document).ready(function(){
 				case 84:
 				console.log('test');
 				e.classList.appendChild(whiteKey);
-					btn[0].play();
 					break;
 				case 87:
 					btn[1].classList.add('active');
 					e.classList.appendChild(whiteKey);
 					console.log('test');
-					btn[1].play();
 					break;
 				case 69:
 					btn[2].classList.add('active');
 					console.log('test');
-					btn[2].play();
 					break;
 				case 82:
 					btn[3].classList.add('active');
 					console.log('test');
-					btn[3].play();
 					break;
 				case 84:
 					btn[4].classList.add('active');
 					console.log('test');
-					btn[4].play();
 					break;					
 				default:
 			}
@@ -279,11 +273,11 @@ $(document).ready(function(){
 
 		var sample = sampleMap['key'+note];
 		if(sample){
+			
 			if(type == (0x80 & 0xf0) || velocity == 0){ //needs to be fixed for QuNexus, which always returns 144
 				$('.active').css('background-color', "");
 
 				btn[sample - 1].classList.remove('active');
-
 				isPlaying=true;
 				stop();
 				return;
