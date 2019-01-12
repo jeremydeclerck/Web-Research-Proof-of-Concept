@@ -59,4 +59,6 @@ RTC Screen recording -> werkende versie met deftige FPS gevonden zonder audio <b
 proberen audio apart op te nemen en te mergen: <br>
 https://github.com/muaz-khan/WebRTC-Experiment/blob/master/RecordRTC/simple-demos/audio-recording.html <br>
 https://github.com/muaz-khan/WebRTC-Experiment/blob/master/ffmpeg/merging-wav-and-webm-into-mp4.html <br>
+------ <br>
+niet gelukt, verder researchen
 
