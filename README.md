@@ -51,7 +51,7 @@ https://github.com/muaz-khan/Chrome-Extensions/tree/master/screen-recording#call
 https://github.com/muaz-khan/Ffmpeg.js <br>
 PROBLEEM: opnemen lukt (screencastify): video en audio kwaliteit heel slecht <br>
 
-<h4> 12-01-19 </h4>
+<h4> 12-01-19 </h4> <br>
 Zoeken naar mogelijkheden om met canvas te werken ipv divs voor snellere video en betere audio kwaliteit -- niet mogelijk <br>
 proberen FPS issues op te lossen met casting <br>
 chrome://flags/#enable-experimental-web-platform-features Enabled <br>
@@ -62,5 +62,8 @@ https://github.com/muaz-khan/WebRTC-Experiment/blob/master/ffmpeg/merging-wav-an
 ------ <br>
 niet gelukt, verder researchen <br>
 <br>
-Video-only recording geimplementeerd op project. Audio verder researchen
+Video-only recording geimplementeerd op project. Audio verder researchen <br>
+
+<h4> 13-01-19 </h4> <br>
+Verder researchen naar audio opnemen <br>
 
