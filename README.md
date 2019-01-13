@@ -66,4 +66,9 @@ Video-only recording geimplementeerd op project. Audio verder researchen <br>
 
 <h4> 13-01-19 </h4> <br>
 Verder researchen naar audio opnemen <br>
+https://www.codepool.biz/capture-record-audio-html5.html <br>
+succesvol audio opnemen <br>
+Status: 2 aparte files ( audio in wav en video en webm ) <br>
+proberen samen te krijgen door middel van FFMPEG <br>
+https://github.com/muaz-khan/Ffmpeg.js
 
