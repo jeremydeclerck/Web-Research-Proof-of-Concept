@@ -1,8 +1,4 @@
-
-$(document).ready(function(){	
-
-	
-//http://stackoverflow.com/questions/23687635/how-to-stop-audio-in-an-iframe-using-web-audio-api-after-hiding-its-container-di
+$(document).ready(function(){		
 (function(){
 	var log = console.log.bind(console), keyData = document.getElementById('key_data'), 
 			deviceInfoInputs = document.getElementById('inputs'), deviceInfoOutputs = document.getElementById('outputs'), midi;
@@ -11,7 +7,6 @@ $(document).ready(function(){
 	var btnBox = document.getElementById('content'), btn = document.getElementsByClassName('button');
 	var data, cmd, channel, type, note, velocity;
 	var isReleased = false;
-
 	var myColor;
 
 	$("#custom").spectrum({
@@ -22,8 +17,6 @@ $(document).ready(function(){
 		}
 	});
 
-
-	// request MIDI access
 	if(navigator.requestMIDIAccess){
 		navigator.requestMIDIAccess({sysex: false}).then(onMIDISuccess, onMIDIFailure);
 	}
@@ -31,14 +24,6 @@ $(document).ready(function(){
 		alert("No MIDI support in your browser.");
 	}
 
-	// add event listeners
-	document.addEventListener('keydown', keyController);
-	document.addEventListener('keyup', keyController);
-	for(var i = 0; i < btn.length; i++){
-		btn[i].addEventListener('mousedown', clickPlayOn);
-		btn[i].addEventListener('mouseup', clickPlayOff);	
-	}
-	// prepare audio files
 	for(var i = 0; i < btn.length; i++){
 		addAudioProperties(btn[i]);
 	}
@@ -107,89 +92,13 @@ $(document).ready(function(){
 		key96: 61,
 	};
 
-
-	// user interaction 
-	function clickPlayOn(e){
-
-		e.target.classList.add('active');
-		e.target.play();
-
-
-	}
-	
-	function clickPlayOff(e){
-		e.target.classList.remove('active');
-		document.getElementById("content").appendChild(whiteKey);
-
-
-	}
-
-
-
-	function keyController(e){
-		if(e.type == "keydown"){
-			
-			switch(e.keyCode){
-				case 84:
-				console.log('test');
-				e.classList.appendChild(whiteKey);
-					break;
-				case 87:
-					btn[1].classList.add('active');
-					e.classList.appendChild(whiteKey);
-					console.log('test');
-					break;
-				case 69:
-					btn[2].classList.add('active');
-					console.log('test');
-					break;
-				case 82:
-					btn[3].classList.add('active');
-					console.log('test');
-					break;
-				case 84:
-					btn[4].classList.add('active');
-					console.log('test');
-					break;					
-				default:
-			}
-		}
-		else if(e.type == "keyup"){
-			switch(e.keyCode){
-				case 81:
-					btn[0].classList.remove('active');
-					break;
-				case 87:
-					btn[1].classList.remove('active');
-					break;
-				case 69:
-					btn[2].classList.remove('active');
-					break;
-				case 82:
-					btn[3].classList.remove('active');
-					break;
-				case 84:
-					btn[4].classList.remove('active');
-					break;
-				default:
-					console.log(e.keyCode);
-			}
-		}
-	}
-	console.log(WebMidi.inputs);
-
-	// midi functions
 	function onMIDISuccess(midiAccess){
 		midi = midiAccess;
 		var inputs = midi.inputs.values();
-		// loop through all inputs
 		for(var input = inputs.next(); input && !input.done; input = inputs.next()){
-			// listen for midi messages
 			input.value.onmidimessage = onMIDIMessage;
-
 			listInputs(input);
 		}
-		// listen for connect/disconnect message
 		midi.onstatechange = onStateChange;
 
 		showMIDIPorts(midi);
@@ -199,16 +108,10 @@ $(document).ready(function(){
 		data = event.data,
 		cmd = data[0] >> 4,
 		channel = data[0] & 0xf,
-		type = data[0] & 0xf0, // channel agnostic message type. Thanks, Phil Burk.
+		type = data[0] & 0xf0, 
 		note = data[1],
 		velocity = data[2];
-		// with pressure and tilt off
-		// note off: 128, cmd: 8 
-		// note on: 144, cmd: 9
-		// pressure / tilt on
-		// pressure: 176, cmd 11: 
-		// bend: 224, cmd: 14
-		//log('MIDI data', data);
+
 		if(cmd==8){
 			isReleased = true;
 		}
@@ -221,9 +124,6 @@ $(document).ready(function(){
 				break;
 		}
 		
-		
-		//log('data', data, 'cmd', cmd, 'channel', channel);
-		//logger(keyData, 'key data', data);
 	}
 
 	function onStateChange(event){
@@ -233,14 +133,7 @@ $(document).ready(function(){
 			log("name", name, "port", port, "state", state);
 
 	}
-/*
-	function listInputs(inputs){
-		var input = inputs.value;
-			log("Input port : [ type:'" + input.type + "' id: '" + input.id + 
-					"' manufacturer: '" + input.manufacturer + "' name: '" + input.name + 
-					"' version: '" + input.version + "']");
-	}
-*/
+
 	function noteOn(midiNote, velocity){
 		player(midiNote, velocity);
 	}
@@ -249,12 +142,9 @@ $(document).ready(function(){
 		player(midiNote, velocity);
 	}
 
-	function stop(){
-		console.log('stop');
-		
+	function stop(){		
 		cancelAnimationFrame(move);
 		isPlaying = true;
-	
 	}
 
 	function player(note, velocity){
@@ -269,7 +159,6 @@ $(document).ready(function(){
 		whiteKey.className = "movingwhite";
 		var height = 0;
 		var frame;
-
 
 		var sample = sampleMap['key'+note];
 		if(sample){
@@ -304,11 +193,8 @@ $(document).ready(function(){
 				requestAnimationFrame(move); 
 			}
 			
-
 			if ($(btn[sample - 1]).hasClass("white")) {
-				
-
-				
+						
 				btn[sample - 1].appendChild(whiteKey);
 				$(whiteKey).animate({
 					top: '-2000px',
@@ -320,11 +206,7 @@ $(document).ready(function(){
 					top: '-2000px',
 				}, 13520, "linear");
 			  }
-
-		
-			
-
-		  
+	  
 			btn[sample - 1].play(velocity);
 		}
 	}
@@ -333,35 +215,6 @@ $(document).ready(function(){
 		log("No access to MIDI devices or your browser doesn't support WebMIDI API. Please use WebMIDIAPIShim " + e);
 	}
 
-	// MIDI utility functions
-	function showMIDIPorts(midiAccess){
-		var inputs = midiAccess.inputs,
-				outputs = midiAccess.outputs, 
-				html;
-		html = '<h4>MIDI Inputs:</h4><div class="info">';
-		inputs.forEach(function(port){
-			html += '<p>' + port.name + '<p>';
-			html += '<p class="small">connection: ' + port.connection + '</p>';
-			html += '<p class="small">state: ' + port.state + '</p>';
-			html += '<p class="small">manufacturer: ' + port.manufacturer + '</p>';
-			if(port.version){
-				html += '<p class="small">version: ' + port.version + '</p>';
-			}
-		});
-		deviceInfoInputs.innerHTML = html + '</div>';
-
-		html = '<h4>MIDI Outputs:</h4><div class="info">';
-		outputs.forEach(function(port){
-			html += '<p>' + port.name + '<br>';
-			html += '<p class="small">manufacturer: ' + port.manufacturer + '</p>';
-			if(port.version){
-				html += '<p class="small">version: ' + port.version + '</p>';
-			}
-		});
-		deviceInfoOutputs.innerHTML = html + '</div>';
-	}
-
-	// audio functions
 	function loadAudio(object, url){
 		var request = new XMLHttpRequest();
 		request.open('GET', url, true);
@@ -399,26 +252,6 @@ $(document).ready(function(){
 		}
 	}
 
-	// utility functions
-	function randomRange(min, max){
-		return Math.random() * (max + min) + min;
-	}
-
-	function rangeMap(x, a1, a2, b1, b2){
-		return ((x - a1)/(a2-a1)) * (b2 - b1) + b1;
-	}
-
-	function frequencyFromNoteNumber( note ) {
-		return 440 * Math.pow(2,(note-69)/12);
-	}
-
-	function logger(container, label, data){
-		messages = label + " [channel: " + (data[0] & 0xf) + ", cmd: " + (data[0] >> 4) + ", type: " + (data[0] & 0xf0) + " , note: " + data[1] + " , velocity: " + data[2] + "]";
-		container.textContent = messages;
-	}
-
 })();
-
-
 
 });
