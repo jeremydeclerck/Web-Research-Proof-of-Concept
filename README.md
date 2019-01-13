@@ -70,5 +70,8 @@ https://www.codepool.biz/capture-record-audio-html5.html <br>
 succesvol audio opnemen <br>
 Status: 2 aparte files ( audio in wav en video en webm ) <br>
 proberen samen te krijgen door middel van FFMPEG <br>
-https://github.com/muaz-khan/Ffmpeg.js
+https://github.com/muaz-khan/Ffmpeg.js <br>
+https://github.com/streamproc/Record-Entire-Meeting/blob/master/Concatenate-Recordings.js#L43 <br>
+Tussenscherm proberen uitschakelen <br>
+https://w3c.github.io/mediacapture-screen-share/#dfn-display-surface <br>
 
