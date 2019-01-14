@@ -77,3 +77,4 @@ https://w3c.github.io/mediacapture-screen-share/#dfn-display-surface <br>
 
 <h4> 14-01-19 </h4> <br>
 https://stackoverflow.com/questions/49936547/ability-to-record-web-page-within-browser-without-any-extension <br>
+https://www.apowersoft.com/api/screen-recorder.html <br>
