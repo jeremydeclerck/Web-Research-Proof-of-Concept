@@ -1,6 +1,6 @@
 # Web-Research-Proof-of-Concept
 
-<h2>Kan je Midi live weergeven, opnemen en exporteren. </h2>
+<h2>Kan je Midi live weergeven, opnemen en exporteren op het web. </h2>
 
 https://github.com/jeremydeclerck/Web-Research-Proof-of-Concept <br>
 
