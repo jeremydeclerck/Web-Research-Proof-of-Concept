@@ -17,13 +17,13 @@
 
 </head>
 <body>
-		<div id='videodiv' style="width: 100%; position: absolute; background-color: aliceblue; height: 680px; z-index: 999;">
-		<video style="display: block; margin-left: auto; margin-right: auto; margin-top: 200px;" controls autoplay playsinline></video>
+		<!-- <div id='videodiv' style="width: 60%; position: absolute; left:100px; top:200px; background-color: aliceblue; height: 680px; z-index: 999;">
+		<video style="display: block; margin-left: auto; margin-right: auto; margin-top: 200px; width: 40%;" controls autoplay playsinline></video> -->
 		</div>
 		<input type='text' id="custom" />
-		<ol id="recordingsList"></ol>		
-		<img src="image/recording.png" style="position: absolute; right: 0; top: 0;"width="30px"id="btn-start-recording">
-		<img src="image/recording-active.png" style="position: absolute; right: 0; top: 0;"width="30px"id="btn-stop-recording">
+		<ol id="recordingsList"></ol>
+		<img src="image/recording.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-start-recording">
+		<img src="image/recording-active.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-stop-recording">
 
 		<div id="content">
 		<div class="button white c"></div>
@@ -84,178 +84,25 @@
 		<div class="button white g"></div>
 		<div class="button black g#"></div>
 		<div class="button white a"></div>
-		
-	</div>	
+
+	</div>
 
 	<script>
-		
-			var videodiv = document.getElementById('videodiv');
-			var startRecording = document.getElementById('btn-start-recording');
-			var stopRecording = document.getElementById('btn-stop-recording');
-			stopRecording.style.visibility = "hidden";
-			videodiv.style.visibility = "hidden";
-			var video = document.querySelector('video');
-			
-			if(!navigator.getDisplayMedia && !navigator.mediaDevices.getDisplayMedia) {
-				
-				var error = 'Your browser does NOT supports getDisplayMedia API.';
-				document.querySelector('h1').innerHTML = error;
-				document.querySelector('video').style.display = 'none';
-				startRecording.style.display = 'none';
-				stopRecording.style.display = 'none';
-				throw new Error(error);
-			}
-			
-			function invokeGetDisplayMedia(success, error) {
-				var displaymediastreamconstraints = {
-					video: {
-						displaySurface: 'window',
-						logicalSurface: true,
-						cursor: 'never' 
-					}
-				};
+var recorder = new RecordRTC_Extension();
 
-				var displaymediastreamconstraints = {
-					video: true
-				};
-				if(navigator.mediaDevices.getDisplayMedia) {
-					navigator.mediaDevices.getDisplayMedia(displaymediastreamconstraints).then(success).catch(error);
-				}
-				else {
-					navigator.getDisplayMedia(displaymediastreamconstraints).then(success).catch(error);
-				}
-			}
-			
-			function capturescreen(callback) {
-				invokeGetDisplayMedia(function(screen) {
-					addStreamStopListener(screen, function() {
-						document.getElementById('btn-stop-recording').click();
-					});
+recorder.startRecording({
+    enableScreen: true,
+    enableMicrophone: true,
+	enableSpeakers: true,
+});
 
-					callback(screen);
-				}, function(error) {
-					console.error(error);
-					alert('Unable to capture your screen. Please check console logs.\n' + error);
-				});
-			}
-			
-			function stopRecordingCallback() {
-				video.src = video.srcObject = null;
-				video.src = URL.createObjectURL(recorder.getBlob());
-				
-				recorder.screen.stop();
-				recorder.destroy();
-				recorder = null;
-				videodiv.style.visibility = "visible";
-				document.getElementById('btn-start-recording').disabled = false;
-			}
-
-			var recorder;
-			
-			document.getElementById('btn-start-recording').onclick = function() {
-				
-				this.disabled = true;
-				
-				capturescreen(function(screen) {
-					startRecording.style.visibility = "hidden";
-				stopRecording.style.visibility = "visible";
-					video.srcObject = screen;
-					recorder = RecordRTC(screen, {
-						type: 'video'
-					});
-					recorder.startRecording();
-					recorder.screen = screen;
-					document.getElementById('btn-stop-recording').disabled = false;
-				});
-			};
-			document.getElementById('btn-stop-recording').onclick = function() {
-				this.disabled = true;
-				recorder.stopRecording(stopRecordingCallback);
-			};
-			function addStreamStopListener(stream, callback) {
-				stream.addEventListener('ended', function() {
-					callback();
-					callback = function() {};
-				}, false);
-				stream.addEventListener('inactive', function() {
-					callback();
-					callback = function() {};
-				}, false);
-				stream.getTracks().forEach(function(track) {
-					track.addEventListener('ended', function() {
-						callback();
-						callback = function() {};
-					}, false);
-					track.addEventListener('inactive', function() {
-						callback();
-						callback = function() {};
-					}, false);
-				});
-			}
-
-
-
-
-	URL = window.URL || window.webkitURL;
- 
-	var gumStream; 
-	var rec; 
-	var input;
-	
-	var AudioContext = window.AudioContext || window.webkitAudioContext;
-	var audioContext = new AudioContext;
-	
-	var recordButton = document.getElementById("btn-start-recording");
-	var stopButton = document.getElementById("btn-stop-recording");
-	
-	recordButton.addEventListener("click", startRecording);
-	stopButton.addEventListener("click", stopRecording);
-
-	function startRecording() {
-	
-		var constraints = { audio: true }
-	
-	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-	
-			gumStream = stream;
-			input = audioContext.createMediaStreamSource(stream);
-	
-			rec = new Recorder(input,{numChannels:1})
-	
-			rec.record()
-		}).catch(function(err) {
-			
-		});
-	}
-
-	function stopRecording() {
-		rec.stop();
-		gumStream.getAudioTracks()[0].stop();
-	
-		rec.exportWAV(createDownloadLink);
-	}
-
-	function createDownloadLink(blob) {
-	
-		var url = URL.createObjectURL(blob);
-		var au = document.createElement('audio');
-		var li = document.createElement('li');
-		var link = document.createElement('a');
-
-		au.controls = true;
-		au.src = url;
-
-		link.href = url;
-		link.download = new Date().toISOString() + '.wav';
-		link.innerHTML = link.download;
-
-		li.appendChild(au);
-		li.appendChild(link);
-
-		recordingsList.appendChild(li);
-	}
-
-
+btnStopRecording.onclick = function() {
+    recorder.stopRecording(function(blob) {
+        console.log(blob.size, blob);
+        var url = URL.createObjectURL(blob);
+        video.src = url;
+    });
+};
 </script>
 </body>
 </html>
