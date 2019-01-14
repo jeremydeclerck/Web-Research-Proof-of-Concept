@@ -22,9 +22,9 @@
 		</div>
 		<input type='text' id="custom" />
 		<ol id="recordingsList"></ol>
-		<img src="image/recording.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-start-recording">
-		<img src="image/recording-active.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-stop-recording">
-
+		<!-- <img src="image/recording.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-start-recording">
+		<img src="image/recording-active.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-stop-recording"> -->
+		<div style=" width: 2%; position: absolute; right: 10px; top: 10px;"width="30px" class="start-screen-recording"><div><div class="rec-dot"></div><span>Start</span></div></div><script src="https://api.apowersoft.com/screen-recorder?lang=en" defer></script>
 		<div id="content">
 		<div class="button white c"></div>
 		<div class="button black c#" ></div>
@@ -88,21 +88,22 @@
 	</div>
 
 	<script>
-var recorder = new RecordRTC_Extension();
-
-recorder.startRecording({
-    enableScreen: true,
-    enableMicrophone: true,
-	enableSpeakers: true,
-});
-
-btnStopRecording.onclick = function() {
-    recorder.stopRecording(function(blob) {
-        console.log(blob.size, blob);
-        var url = URL.createObjectURL(blob);
-        video.src = url;
-    });
-};
+var apowerScreenRecorderConfig = {
+	"vbitrate": "3000",
+	"recauto": "1",
+	"recrectangle": "0,180,1894,852",
+	"recmode": "0",
+	"recmouse": "0",
+	"recmouseclick": "0",
+	"recmousespot": "0",
+	"recaudioinput": "2",
+	"savemode": "2",
+	"completeaction": "2",
+	"uishowads": "0",
+	"uishowhelp": "0",
+	"uishowuploadcompleted": "0",
+	"uishowuploadfailed": "0"
+}
 </script>
 </body>
 </html>
