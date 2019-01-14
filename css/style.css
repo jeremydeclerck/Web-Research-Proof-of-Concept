@@ -67,6 +67,18 @@ p:not(.small){
     opacity: 1;
 }
 
+.start-screen-recording a{
+    visibility: !important;
+}
+
+.agent-popup{
+    visibility: hidden !important;
+}
+
+.apower-powerby{
+    visibility: hidden!important;
+}
+
 
 
 

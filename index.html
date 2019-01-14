@@ -7,11 +7,24 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
 	<script src="js/spectrum.js"></script>
+	<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="https://cdn.webrtc-experiment.com/common.js"></script>
+<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/script.js"></script>
+
 </head>
 <body>
+		<!-- <div id='videodiv' style="width: 60%; position: absolute; left:100px; top:200px; background-color: aliceblue; height: 680px; z-index: 999;">
+		<video style="display: block; margin-left: auto; margin-right: auto; margin-top: 200px; width: 40%;" controls autoplay playsinline></video> -->
+		</div>
 		<input type='text' id="custom" />
-		<canvas id="c" width='1280' height="600"></canvas>
-	 <div id="content">
+		<ol id="recordingsList"></ol>
+		<!-- <img src="image/recording.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-start-recording">
+		<img src="image/recording-active.png" style="position: absolute; right: 10px; top: 10px;"width="30px"id="btn-stop-recording"> -->
+		<div style=" width: 2%; position: absolute; right: 10px; top: 10px;"width="30px" class="start-screen-recording"><div><div class="rec-dot"></div><span>Start</span></div></div><script src="https://api.apowersoft.com/screen-recorder?lang=en" defer></script>
+		<div id="content">
 		<div class="button white c"></div>
 		<div class="button black c#" ></div>
 		<div class="button white d"></div>
@@ -70,11 +83,27 @@
 		<div class="button white g"></div>
 		<div class="button black g#"></div>
 		<div class="button white a"></div>
-		
+
 	</div>
 
-	<script src="js/script.js">
-	
-	</script>
+	<script>
+var apowerScreenRecorderConfig = {
+	"vbitrate": "3000",
+	"aquality": "0",
+	"recauto": "1",
+	"recrectangle": "0,180,1894,852",
+	"recmode": "1",
+	"recmouse": "0",
+	"recmouseclick": "0",
+	"recmousespot": "0",
+	"recaudioinput": "2",
+	"savemode": "2",
+	"completeaction": "2",
+	"uishowads": "0",
+	"uishowhelp": "0",
+	"uishowuploadcompleted": "0",
+	"uishowuploadfailed": "0"
+}
+</script>
 </body>
 </html>
