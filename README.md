@@ -2,7 +2,7 @@
 
 <h2>Kan je Midi live weergeven, opnemen en exporteren. </h2>
 
-repository: https://github.com/jeremydeclerck/Web-Research-Proof-of-Concept <br>
+https://github.com/jeremydeclerck/Web-Research-Proof-of-Concept <br>
 
 <h4> 1-12-18 </h4> <br>
 Research naar haalbaarheid en zoeken naar compatibele en beste talen te gebruiken. <br>
